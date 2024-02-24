@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+
+  demo:
+    container_name: demo
+    image: demo
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  mongo-data:

@@ -1,0 +1,31 @@
+### demo
+GET http://localhost:8081/demo
+Accept: application/json
+
+### findAll
+GET http://localhost:8081/products
+Accept: application/json
+
+### save
+POST http://localhost:8081/products
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Beer",
+  "manufacturer": "Korona",
+  "amount": 2,
+  "price": 5.99
+}
+
+### save
+POST http://localhost:8081/products
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Whiskey",
+  "manufacturer": "Jack Daniels",
+  "amount": 1,
+  "price": 75.52
+}
