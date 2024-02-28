@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo
+  labels:
+    app: demo
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      name: demo
+      labels:
+        app: demo
+    spec:
+      containers:
+        - name: demo
+          image: undeadsanta/demo:3.0.0
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /etc/test
+              name: test
+              readOnly: true
+          livenessProbe:
+            exec:
+              command:
+                - curl
+                - --fail
+                - http://localhost:8080/demo
+            initialDelaySeconds: 45
+            periodSeconds: 5
+            failureThreshold: 1
+      restartPolicy: Always
+      volumes:
+        - name: test
+          configMap:
+            name: mongo-config-map
