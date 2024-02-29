@@ -1,0 +1,11 @@
+application:
+  app: demo
+  name: demo
+  image: undeadsanta/demo
+  version: 3.0.0
+  containerPort: 8080
+  replicas: 5
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8080

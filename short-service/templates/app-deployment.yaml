@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo
+  name: {{ .Values.application.name }}
   labels:
-    app: demo
+    app: {{ .Values.application.app }}
 spec:
-  replicas: 5
+  replicas: {{ .Values.application.replicas }}
   selector:
     matchLabels:
-      app: demo
+      app: {{ .Values.application.app }}
   template:
     metadata:
-      name: demo
+      name: {{ .Values.application.name }}
       labels:
-        app: demo
+        app: {{ .Values.application.app }}
     spec:
       containers:
-        - name: demo
-          image: undeadsanta/demo:3.0.0
+        - name: {{ .Values.application.name }}
+          image: {{ .Values.application.image }}:{{ .Values.application.version }}
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.application.containerPort }}
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /etc/test
